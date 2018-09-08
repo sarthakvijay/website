@@ -1,0 +1,68 @@
+﻿<link rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+
+<!-- Back button to navigate to the main page-->
+<div class="row">
+  <div class="col-sm-4"></div>
+  <div class="col-sm-4">
+    <a class="btn btn=primary"
+       routerLink="/">
+      <button type="button">Back to List</button>
+    </a>
+  </div>
+  <div class="col-sm-4"></div>
+</div>
+
+
+<div class="row"
+     align="center">
+  <div class="col-sm-4"></div>
+  <div class="col-sm-4">
+    <!-- form for enrollment to the course by user-->
+    <form [formGroup]="courseform"
+          (ngSubmit)="submitRegistration()"
+          novalidate>
+      <!-- Messahe string to show status relating to form filling -->
+      <div *ngIf="validMessage != ''">
+        <h3 class="has-info">{{validMessage}}</h3>
+      </div>
+
+      <div class="form-group">
+        <label> User Name </label>
+        <input type="text"
+               class="form-control"
+               formControlName="name"
+               required
+               autofocus/>
+      </div>
+
+      <div class="form-group">
+        <label> Employee Id </label>
+        <input type="text"
+               class="form-control"
+               formControlName="employeeId"
+               required/>
+      </div>
+
+      <!--Droping all the course from database table using getCourses api-->
+      <div class="form-group">
+        <label> Course </label>
+        <select class="form-control"
+                formControlName="courseName"
+                required>
+          <option value="">Please select a course</option>
+          <option *ngFor="let course of courses"
+                  [value]="course.course">
+            {{course.course}}
+          </option>
+        </select>
+      </div>
+
+      <!-- Buttoon to call submitregistration() function-->
+      <button type="submit"
+              class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+  <div class="col-sm-4"></div>
+</div>

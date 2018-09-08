@@ -1,0 +1,82 @@
+<link rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<div class="row">
+  <div class="col-sm-3"></div>
+  <div class="col-sm-3" align="center">
+      <!-- Button to go back to the list of courses -->
+      <a routerLink="/">
+        <button type="button"
+                style="border-left: 10px; border-color: white;"
+                class="btn">Back</button>
+      </a>
+    </div>
+  <div class="col-sm-3" align="center">
+    <!-- Button to add new course to the list-->
+
+    <a routerLink='../../admin/edit'>
+      <button type="button"
+              style="border-right: 10px; border-color: white;"
+              class="btn">
+        Edit Courses
+      </button>
+    </a>
+    </div>
+  
+  <div class="col-sm-3"></div>
+</div>
+
+<div class="row">
+  <div class="col-sm-4"></div>
+  <div class="col-sm-4"
+       align="left">
+    <!-- user enrolled courses headers -->
+    <table class="table table-bordered table-inverse ">
+      <tr>
+        <th>Course Id</th>
+        <th>Course Name</th>
+        <th>Enrolled On</th>
+      </tr>
+      <!-- to list all the courses enrolled by usesr-->
+      <tr *ngFor="let course of courseAll">
+        <td>
+          {{course.id}}
+        </td>
+        <td>
+          {{course.courseName}}
+        </td>
+        <td>
+          {{course.createdAt}}
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div class="col-sm-4"></div>
+</div>
+
+
+
+<!-- Admin page to access the courses for particular user -->
+<div class="row">
+  <div class="col-sm-4"></div>
+  <div class="col-sm-4"
+       align="center">
+    <h3> To View Enrollred courses for User Id </h3>
+    <form class="form-inline">
+
+      <input type="text"
+             class="form-control"
+             [(ngModel)]="eId"
+             name="first"
+             placeholder="User Id">
+
+      <a routerLink='../../admin/view/{{eId}}'>
+        <button type="button"
+                class="btn"> Enrolled Courses</button>
+      </a>
+
+    </form>
+
+  </div>
+  <div class="col-sm-4"></div>
+</div>

@@ -1,0 +1,89 @@
+<link rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<div class="row">
+  <div class="col-sm-4"></div>
+  <div class="col-sm-4"
+       align="left">
+    <!-- Back button to navigate to the main page-->
+
+    <a class="btn btn=primary"
+       routerLink="/">
+      <button type="button"
+              class="btn">Back</button>
+    </a>
+  </div>
+  <div class="col-sm-4"></div>
+</div>
+<div class="row">
+  <div class="col-sm-4"></div>
+  <div class="col-sm-4"
+       align="center">
+    <h3>
+      <b>{{employeeId}}</b>
+    </h3>
+
+  </div>
+  <div class="col-sm-4"></div>
+</div>
+<div class="row">
+  <div class="col-sm-4"></div>
+  <div class="col-sm-4">
+    <!-- to list courses belonging to all user -->
+    <table class="table table-bordered table-inverse">
+      <tr style="font-size: 18px;">
+        <th>Course Id</th>
+        <th>Course Name</th>
+        <th>Enrolled On</th>
+      </tr>
+      <tr *ngFor="let course of courseReg">
+        <td>
+          {{course.id}}
+        </td>
+        <td>
+          <b>
+            {{course.courseName}}
+          </b>
+        </td>
+        <td>
+          {{course.createdAt}}
+        </td>
+
+      </tr>
+    </table>
+  </div>
+  <div class="col-sm-4"></div>
+</div>
+
+<!-- Deleting enrollment from particlar course-->
+<div class="row"
+     align="center">
+  <div class="col-sm-4"></div>
+  <div class="col-sm-4">
+    <form class="form-inline"
+          [formGroup]="deleteform"
+          (ngSubmit)="deleteRegistration()"
+          novalidate>
+
+      <!-- form button to delete particular course from use profile -->
+      <h3> Delete From Enrolled Courses </h3>
+      <div class="form-group">
+
+        <select class="form-control"
+                formControlName="commentId"
+                required>
+          <option value="">Course Id</option>
+          <option *ngFor="let course of courseReg"
+                  [value]="course.id">
+            {{course.id}}
+          </option>
+        </select>
+      </div>
+
+      <!--To call deleteRegistration-->
+      <button type="submit"
+              class="btn btn-primary">Delete</button>
+    </form>
+  </div>
+  <div class="col-sm-4"></div>
+</div>

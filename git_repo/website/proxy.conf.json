@@ -1,0 +1,12 @@
+{
+  
+	"/server": {
+		"target": "http://ec2-35-154-183-174.ap-south-1.compute.amazonaws.com/",
+		"secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug",
+    "pathRewrite": {
+      "^/server" : ""
+    }
+	}
+}

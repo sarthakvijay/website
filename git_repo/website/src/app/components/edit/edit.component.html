@@ -1,0 +1,98 @@
+<link rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<body class="container">
+    <!-- Button for navigation to admin page -->
+    <div align="right">
+        <a routerLink='../add'>
+            <button type="button"
+                    class="btn">
+                Add Course
+            </button>
+        </a>
+    </div>
+
+
+    <!--To list all the courses avaiolable for training -->
+    <div class="row">
+
+        <div>
+            <form class="form-inline"></form>
+            <label for="filterBy">
+                <h4>Filter By:</h4>
+            </label>
+            <input type="text"
+                   id="filterBy"
+                   placeholder="Search String"
+                   [(ngModel)]="filterBy"
+                   name="Filter Box">
+        </div>
+
+        <div *ngIf="validMessage != ''">
+            <h3 class="has-info">{{validMessage}}</h3>
+        </div>
+
+        <table class="table table-bordered table-inverse">
+
+            <tr style="font-size: 20px;">
+                <th>Id</th>
+                <th>Course Name</th>
+                <th>Duration (Hrs)</th>
+                <th>Availability</th>
+                <th>Start Date</th>
+                <th>Last Date for Reg</th>
+                <th>Delete</th>
+            </tr>
+
+            <tr *ngFor="let course of courses">
+                <td *ngIf="performFilter(course.course) !== -1">
+                    {{course.id}}
+                </td>
+                <td *ngIf="performFilter(course.course) !== -1">
+                    {{course.course}}
+                </td>
+                <td *ngIf="performFilter(course.course) !== -1">
+                    {{course.duration}}
+                </td>
+                <td *ngIf="performFilter(course.course) !== -1">
+                    {{course.availability}}
+                </td>
+                <td *ngIf="performFilter(course.course) !== -1">
+                    {{course.startDate}}
+                </td>
+                <td *ngIf="performFilter(course.course) !== -1">
+                    {{course.lastDate}}
+                </td>
+                <td *ngIf="performFilter(course.course) !== -1">
+                    <form (ngSubmit)="deleteCourses(course.id)">
+                        <button *ngIf="performFilter(course.course) !== -1"
+                                type="submit"
+                                class="btn">
+                            Delete
+                        </button>
+                    </form>
+                </td>
+            </tr>
+
+        </table>
+    </div>
+
+    <!-- To check for enrolled couress by User-->
+    <div align="center"
+         ng-app="">
+        <h3>View Enrollred courses </h3>
+        <form class="form-inline">
+
+            <input type="text"
+                   class="form-control"
+                   placeholder="Your Id"
+                   [(ngModel)]="eId"
+                   name="first">
+            <a routerLink='admin/view/{{eId}}'>
+                <button type="button"
+                        class="btn">My Enrolled Courses</button>
+            </a>
+
+        </form>
+    </div>
+</body>
